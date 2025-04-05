@@ -4,12 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Repository</title>
-    <limk rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="/src/public/js/script.js" type="module"></script>
 </head>
 <body>
     <header>
         <h1>Recipe Repository</h1>
         <nav>
+            <a href="recipes.html">Recipes</a>
+            <a href="addrecipe.html">add Recipe</a>
+            <a href="login.html">Login</a>
         </nav>
+    </header>
+
+    <main>
+        <h2>Find a Recipe</h2>
+        <input type="text" id="search" placeholder="Search for recipes...">
+        <button id="search-button">Search</button>
+        <div id="recipe-Results">  </div>
+
+        <h2>Welcome to the Recipe Repository</h2>
+        <p>Discover and share your favorite recipes!</p>
+        <section id="recipe-list">
+            <h3>Featured Recipes</h3>
+            <ul id="recipes">
+                <!-- Recipe items will be dynamically inserted here -->
+            </ul>
+        </section>
+    </main>
 </body>
 </html>
