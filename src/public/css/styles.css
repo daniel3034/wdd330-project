@@ -1,0 +1,235 @@
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/* Color palette */
+:root {
+    --light-orange: #f6b26b;
+    --beige: #fff8f0;
+    --green: #93c47d;
+    --dark-brown: #5a3e36;
+    --white: #fff;
+}
+
+/* General styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: var(--beige);
+    color: var(--dark-brown);
+    line-height: 1.6;
+    padding: 1rem;
+}
+
+/* Header and navigation */
+header {
+    background-color: var(--light-orange);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: var(--dark-brown);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main layout */
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 1rem;
+}
+
+h2, h3 {
+    color: var(--dark-brown);
+    margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+button {
+    background-color: var(--green);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #7ca869;
+}
+
+/* Featured Recipes Grid */
+#recipes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+/* Recipe card layout */
+#recipe-list ul,
+#recipe-Results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.recipe-card {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 1rem;
+}
+
+.recipe-card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.recipe-card h3 {
+    margin: 0.5rem 0;
+}
+
+.recipe-card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Recipe details section inside the card */
+.recipe-details {
+    margin-top: 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.recipe-details ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+/* Expand/Collapse container */
+.expand-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.expand-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dark-brown);
+    transition: transform 0.3s ease;
+}
+
+.expand-icon:hover {
+    color: var(--green);
+}
+
+/* Inputs */
+input[type="text"] {
+    padding: 0.5rem;
+    width: 70%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+
+/* Add space below the search bar */
+#search-input {
+    margin-bottom: 1rem; /* Add space below the input field */
+}
+
+#search-button {
+    margin-left: 0.5rem; /* Keep the button close to the input field */
+    margin-bottom: 1rem; /* Add space below the button */
+}
+
+/* Responsive web */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+
+    footer nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--light-orange);
+    color: var(--dark-brown);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+}
+
+footer p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+footer nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+footer nav a {
+    color: var(--dark-brown);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+footer nav a:hover {
+    text-decoration: underline;
+}
