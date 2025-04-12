@@ -62,11 +62,11 @@ function qs(selector) {
 
 export const loadHeaderFooter = async () => {
     try {
-        const header = await loadTemplate('/partials/header.html');
+        const header = await loadTemplate('partials/header.html');
         const headerElement = qs('#header');
         renderWithTemplate(header, headerElement);
 
-        const footer = await loadTemplate('/partials/footer.html');
+        const footer = await loadTemplate('partials/footer.html');
         const footerElement = qs('#footer');
         renderWithTemplate(footer, footerElement);
 
