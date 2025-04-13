@@ -1,6 +1,9 @@
-import { auth } from './firebase';
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { auth } from './firebase.js';
+import { signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { loadHeaderFooter } from './script.js';
+
+// Load header and footer
+loadHeaderFooter();
 
 const loginForm = document.getElementById('login-form');
 
@@ -23,11 +26,7 @@ export const checkAuth = () => {
     onAuthStateChanged(auth, (user) => {
         if (!user) {
             alert('You are not logged in. Please log in to access this page.');
-            window.location.href = '/login'; // Redirect to the login page
+            window.location.href = '/login.html'; // Redirect to the login page
         }
     });
 }    
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadHeaderFooter();
-});
