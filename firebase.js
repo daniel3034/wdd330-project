@@ -15,4 +15,4 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 console.log("Firebase App imported successfully:", getAuth);
-// export { auth };
+export { auth };

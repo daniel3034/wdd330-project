@@ -1,5 +1,6 @@
 import { auth } from './firebase';
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { loadHeaderFooter } from './script.js';
 
 const loginForm = document.getElementById('login-form');
 
@@ -26,3 +27,7 @@ export const checkAuth = () => {
         }
     });
 }    
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadHeaderFooter();
+});

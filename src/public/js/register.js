@@ -1,5 +1,6 @@
 import { auth } from './firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { loadHeaderFooter } from 'js/script.js';
 
 const registerForm = document.getElementById('register-form');
 
@@ -23,3 +24,5 @@ registerForm.addEventListener('submit', async (e) => {
         alert(error.message);
     }
 });
+
+loadHeaderFooter();
