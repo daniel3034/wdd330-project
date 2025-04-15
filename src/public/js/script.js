@@ -1,4 +1,6 @@
 import { displayRecipes} from './recipes.js';
+import { auth } from './firebase.js';
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
 const API_URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
@@ -34,7 +36,7 @@ async function fetchFeaturedRecipes() {
             const recipeItem = document.createElement("li");
             recipeItem.innerHTML = `
                 <div class="recipe-card">
-                    <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
+                    <img src="${recipe.strMealThumb}" alt="${recipe.strMeal} loading="lazy" width="300" height="200"/>
                     <h3>${recipe.strMeal}</h3>
                     <p>${recipe.strInstructions.slice(0, 100)}...</p>
                 </div>
@@ -71,9 +73,32 @@ export const loadHeaderFooter = async () => {
         renderWithTemplate(footer, footerElement);
 
         console.log('Header and footer loaded successfully.');
+
+        // Add authentication state logic here
+        const authLink = document.getElementById('auth-link');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is logged in
+                authLink.innerHTML = `<a href="#" id="logout-link">Logout</a>`;
+                const logoutLink = document.getElementById('logout-link');
+                logoutLink.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    try {
+                        await signOut(auth);
+                        alert('You have been logged out.');
+                        window.location.reload(); // Reload the page to update the UI
+                    } catch (error) {
+                        console.error('Error logging out:', error);
+                    }
+                });
+            } else {
+                // User is logged out
+                authLink.innerHTML = `<a href="register.html">Login/Register</a>`;
+            }
+        });
     } catch (error) {
         console.error('Error loading header or footer:', error);
     }
 };
 
-loadHeaderFooter();
+loadHeaderFooter();;

@@ -1,17 +1,13 @@
-import { auth } from './firebase.js';
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { auth, db } from './firebase.js'; // Import db from firebase.js
+import { ref, push } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { loadHeaderFooter } from './script.js';
+import { checkAuth } from './login.js';
 
 // Load header and footer
 loadHeaderFooter();
 
 // Check if the user is logged in
-onAuthStateChanged(auth, (user) => {
-    if (!user) {
-        alert('You must be logged in to access this page.');
-        window.location.href = '/login.html'; // Redirect to login page
-    }
-});
+checkAuth();
 
 // Handle form submission
 const addRecipeForm = document.getElementById('add-recipe-form');
@@ -29,26 +25,34 @@ addRecipeForm.addEventListener('submit', async (e) => {
     }
 
     try {
-        // Save the recipe details and image (Using Firebase Storage and Firestore)
-        const storageRef = firebase.storage().ref(`recipes/${recipeImage.name}`);
-        await storageRef.put(recipeImage);
-        const imageUrl = await storageRef.getDownloadURL();
+        // Convert the image to a Base64 string
+        const reader = new FileReader();
+        reader.onload = async () => {
+            const base64Image = reader.result; // Base64 string of the image
 
-        const recipeData = {
-            name: recipeName,
-            ingredients: ingredients,
-            instructions: instructions,
-            imageUrl: imageUrl,
-            createdBy: auth.currentUser.uid,
-            createdAt: new Date().toISOString()
+            // Save the recipe data to Realtime Database
+            const recipeData = {
+                name: recipeName,
+                ingredients: ingredients,
+                instructions: instructions,
+                image: base64Image, // Store the Base64 image here
+                createdBy: auth.currentUser.uid,
+                createdAt: new Date().toISOString()
+            };
+
+            const recipesRef = ref(db, 'recipes');
+            await push(recipesRef, recipeData);
+
+            alert('Recipe added successfully!');
+            addRecipeForm.reset(); // Clear the form
         };
 
-        // Save recipe data to Firestore
-        const db = firebase.firestore();
-        await db.collection('recipes').add(recipeData);
+        reader.onerror = (error) => {
+            console.error('Error reading image file:', error);
+            alert('Failed to process the image. Please try again.');
+        };
 
-        alert('Recipe added successfully!');
-        addRecipeForm.reset();
+        reader.readAsDataURL(recipeImage); // Read the image as a Base64 string
     } catch (error) {
         console.error('Error adding recipe:', error);
         alert('Failed to add recipe. Please try again.');

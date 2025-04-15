@@ -11,7 +11,7 @@ export function displayRecipes(recipes) {
         const recipeCard = document.createElement("div");
         recipeCard.className = "recipe-card";
         recipeCard.innerHTML = `
-            <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
+            <img src="${recipe.strMealThumb}" alt="${recipe.strMeal} loading="lazy" width="600" height="400">
             <h3>${recipe.strMeal}</h3>
             <p>${recipe.strInstructions.slice(0, 100)}...</p>
             <div class="recipe-details" style="display: none;"></div>
