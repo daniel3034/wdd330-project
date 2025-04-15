@@ -27,26 +27,49 @@ body {
 
 /* Header and navigation */
 header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: var(--light-orange);
-    padding: 1rem;
+    padding: 10px 20px;
     border-radius: 10px;
     margin-bottom: 1rem;
-    text-align: center;
+    text-align: relative;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: var(--dark-brown);
+}
+
+header .logo img {
+    width: 100px;
+    height: 75px;
+    border-radius: 20%;
+    margin-right: 10px;
 }
 
 header h1 {
-    font-size: 2rem;
     margin-bottom: 0.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    margin: 0;
+    color: var(--dark-brown);
 }
 
 nav {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 30px;
 }
 
 nav a {
     color: var(--dark-brown);
+    font-size: 16px;
     text-decoration: none;
     font-weight: bold;
 }
@@ -182,6 +205,36 @@ input[type="text"] {
 #search-button {
     margin-left: 0.5rem; /* Keep the button close to the input field */
     margin-bottom: 1rem; /* Add space below the button */
+}
+
+/* Styling for the addrecipe form */
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, textarea, button {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 /* Responsive web */
